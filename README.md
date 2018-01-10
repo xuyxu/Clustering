@@ -1,11 +1,13 @@
 # A Collection of Clustering/Subspace Clustering Algorithms
 
-## Clustering Algorithms
+## 1. Clustering Algorithms
 - **K-means**
 - **K-means++**
-- **ISODATA(Iterative Self-Organizing Data Analysis)**
+- **ISODATA (Iterative Self-Organizing Data Analysis)**
 
-## Subspace Clustering Algorithms
+## 2. Subspace Clustering Algorithms
 - **Subspace K-means**
+
+## Reference
 
 
