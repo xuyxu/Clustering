@@ -1,11 +1,11 @@
-# A Collection of Clustering/Subspace Clustering Algorithms using MATLAB
+# A Collection of Clustering/Subspace Clustering Algorithms
 
-## List on Clustering
+## Clustering Algorithms
 - **K-means**
 - **K-means++**
 - **ISODATA(Iterative Self-Organizing Data Analysis)**
 
-## List on Subspace Clustering
+## Subspace Clustering Algorithms
 - **Subspace K-means**
 
 
