@@ -28,7 +28,7 @@ for i = 1:iteration
     for j = 1:k
         centroid(j,:) = mean(data(result(:,1) == j,:));
     end
-    
+    fprintf('%i iteration completed\n',i);
     % if classified results on all samples do not change after an iteration, 
     % clustering process will quit immediately
     if(result == previous_result)
