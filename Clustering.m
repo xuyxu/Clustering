@@ -1,4 +1,5 @@
 function [centroid, result] = Clustering(data, method, varargin)
+addpath('.\lib');
 
 if((strcmp(method,'kmeans') || strcmp(method,'kmeans++')) && (size(varargin,2) ~= 2))
     error('The value of K should be predefined when using k-means and k-means++.');
