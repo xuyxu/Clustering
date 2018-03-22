@@ -10,6 +10,11 @@
     - To be brief, **ISODATA** introduces two additional operations: Splitting and Merging;
     - When the number of observations within one class is less than one pre-defined threshold, **ISODATA** merges two classes with minimum between-class distance; 
     - When the within-class variance of one class exceeds one pre-defined threshold, **ISODATA** splits this class into two different sub-classes.
+- **Mean Shift**
+	- For each point *x*, find neighbors, calculate mean vector *m*, update *x = m*, until *x == m*;
+	- Non-parametric model, no need to specify the number of classes;
+	- No structure priori.
+	
 
 ## 2. Subspace Clustering Algorithms
 - **Subspace K-means**
@@ -21,9 +26,6 @@
     - In addition, it introduces one regularization item related to weight entropy into the objective function, in order to mitigate the aforementioned problem in **Subspace K-means**.
     - Apart from its succinctness and efficiency, it works well on a broad range of real-world datasets.
 - **Sparse Subspace Clustering**
-
-## 3. Examples for Clustering
-## 4. Examples for Subspace Clustering 
 
 
 

@@ -48,7 +48,7 @@ for i = 1 : iteration
     end
     
     if(previous_centroid == centroid)
-        fprintf('Clustering over after %i iterations...\n',i);
+        fprintf('Clustering over after %i iterations...\n', i);
         break;
     end
 end
