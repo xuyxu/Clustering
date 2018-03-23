@@ -1,5 +1,5 @@
 function [centroids, result] = Mean_Shift(data, thr)
-% Main body on mean shift clustering algorithm.
+% Main part of mean shift clustering algorithm.
 %
 % Args:
 %   data: data to be clustered (n * p)
@@ -18,7 +18,7 @@ function [centroids, result] = Mean_Shift(data, thr)
 destination = zeros(size(data)); % variable used to record destination points
 result = zeros(size(data,1),1); % pre-allocate classifying result
 
-% Find destination point for each point in data
+% Conduct shift for each data point
 for i = 1 : size(data,1)
     x = data(i, :); % current point of interests
     mv_new = x;
@@ -38,14 +38,16 @@ end
 
 centroids = unique(destination, 'rows');
 
-% Assign class
+% Calssification
 for i = 1 : size(centroids,1)
-    mask = destination == centroids(i,:);
+    mask = destination == centroids(i,:); % logical index
     mask = mask(:,1);
     result(mask, 1) = i;
 end
 
+% Display
 fprintf('Clustering over, a total number of %i classes\n', size(centroids,1));
+
 end
 
 function d = Eculidean_Distance(x1, x2)
@@ -86,7 +88,7 @@ end
 
 mv = zeros(1, size(x,2)); % pre-allocate result
 
-% Main body on calculating mean vector
+% Calculate mean vector
 if(flag == 0)
     mv = mean(neighbors, 1);
 elseif(flag == 1)

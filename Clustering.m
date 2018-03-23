@@ -2,7 +2,7 @@ function [centroid, result] = Clustering(data, method, varargin)
 
 addpath('.\lib');
 
-% Check validity
+% Check input validity
 if((strcmp(method,'kmeans') || strcmp(method,'kmeans++')) && (size(varargin,2) ~= 2))
     error('The value of K should be predefined when using k-means and k-means++.');
 elseif((strcmp(method,'isodata') || strcmp(method,'ISODATA')) && (size(varargin,2) < 5))
@@ -11,15 +11,19 @@ elseif((strcmp(method,'mean_shift') || strcmp(method,'Mean_Shift')) && (size(var
     error('Invalid number of input for mean shift.');
 end
 
-% Entrance
-if(strcmp(method,'kmeans')) 
+% Method entries
+
+% Kmeans
+if(strcmp(method,'kmeans'))
     k = varargin{1,1};
     iteration = varargin{1,2};
     [centroid, result] = Kmeans(data, k, iteration);
+% Kmeans++
 elseif(strcmp(method,'kmeans++')) 
     k = varargin{1,1};
     iteration = varargin{1,2};
-    [centroid, result] = Kmeanspp(data, k, iteration);   
+    [centroid, result] = Kmeanspp(data, k, iteration);  
+% ISODATA
 elseif(strcmp(method,'ISODATA') || strcmp(method,'isodata'))
     desired_k = varargin{1,1}; % desired number of classes
     iteration = varargin{1,2}; % maximum iteration time
@@ -27,11 +31,12 @@ elseif(strcmp(method,'ISODATA') || strcmp(method,'isodata'))
     maximum_variance = varargin{1,4}; % maximum allowed variance of samples in one class
     minimum_d = varargin{1,5}; %  minimum distance between two classes
     [centroid, result] = ISODATA(data, iteration, desired_k, minimum_n, maximum_variance, minimum_d);
+% Mean Shift
 elseif(strcmp(method,'mean_shift') || strcmp(method,'Mean_Shift'))
     thr = varargin{1,1}; % distance threshold
     [centroid, result] = Mean_Shift(data, thr);
 else
-    error('Unknown method...');
+    error('Unknown method!');
 end
 
 end
