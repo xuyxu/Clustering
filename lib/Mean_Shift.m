@@ -1,4 +1,4 @@
-function [centroids, result] = Mean_Shift(data, thr)
+function [centroid, result] = Mean_Shift(data, thr)
 % Main part of mean shift clustering algorithm.
 %
 % Args:
@@ -36,17 +36,17 @@ for i = 1 : size(data,1)
     fprintf('Shifting for %ith point finishes\n', i);
 end
 
-centroids = unique(destination, 'rows');
+centroid = unique(destination, 'rows');
 
 % Calssification
-for i = 1 : size(centroids,1)
-    mask = destination == centroids(i,:); % logical index
+for i = 1 : size(centroid,1)
+    mask = destination == centroid(i,:); % logical index
     mask = mask(:,1);
     result(mask, 1) = i;
 end
 
 % Display
-fprintf('Clustering over, a total number of %i classes\n', size(centroids,1));
+fprintf('Clustering over, a total number of %i classes\n', size(centroid,1));
 
 end
 
