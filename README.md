@@ -14,9 +14,8 @@
 	- For each point *x*, find neighbors, calculate mean vector *m*, update *x = m*, until *x == m*;
 	- Non-parametric model, no need to specify the number of classes;
 	- No structure priori.
-- **DBSCAN**
-	- Fullname: Density-Based Spatial Clustering of Application with Noise;
-	- Starting with core objects, DBSCAN extends each cluster based on the connectivity between data points;
+- **DBSCAN (Density-Based Spatial Clustering of Application with Noise)**
+	- Starting with pre-selected core objects, DBSCAN extends each cluster based on the connectivity between data points;
 
 ## 2. Subspace Clustering Algorithms
 - **Subspace K-means**
