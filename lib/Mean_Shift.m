@@ -7,7 +7,7 @@ function [centroid, result] = Mean_Shift(data, thr)
 %
 % Returns:
 %   centroids: clustering centroids for all classes
-%   result: corresponding class for each data points
+%   result: corresponding class for each data point
 %
 % Comment:
 %    Note that there is no need to specify the number of classes in mean

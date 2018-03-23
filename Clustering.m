@@ -15,7 +15,7 @@ elseif((strcmp(method,'isodata') || strcmp(method,'ISODATA')) && (size(varargin,
     error('Not enough input for ISODATA. Please use help for more information.');
 elseif((strcmp(method,'mean_shift') || strcmp(method,'Mean_Shift')) && (size(varargin,2) ~= 1))
     error('Invalid number of input for mean shift.');
-elseif((strcmp(method,'dbscan') || strcmp(method,'DBSCAN')) && (size(varagin, 2) ~= 2))
+elseif((strcmp(method,'dbscan') || strcmp(method,'DBSCAN')) && (size(varargin, 2) ~= 2))
     error('Invalid number of input for dbscan.');
 end
 
@@ -27,7 +27,7 @@ if(strcmp(method,'kmeans'))
     iteration = varargin{1,2};
     [centroid, result] = Kmeans(data, k, iteration);
 % Kmeans++
-elseif(strcmp(method,'kmeans++')) 
+elseif(strcmp(method,'kmeans++') || strcmp(method,'kmeanspp')) 
     k = varargin{1,1};
     iteration = varargin{1,2};
     [centroid, result] = Kmeanspp(data, k, iteration);  
@@ -47,7 +47,7 @@ elseif(strcmp(method,'mean_shift') || strcmp(method,'Mean_Shift'))
 elseif(strcmp(method,'dbscan') || strcmp(method,'DBSCAN'))
     epsilon = varargin{1,1}; % distance threshold for finding neighbors
     minPts = varargin{1,2};% minimum required number of neighbor points for adding one core object
-    centroid = []; % DBSCAN will not calculate centroid
+    centroid = nan; % DBSCAN will not calculate centroid
     result = DBSCAN(data, epsilon, minPts);
 else
     error('Unknown method!');

@@ -1,9 +1,19 @@
-function [centroid, result] = Kmeanspp(data, k, iteration)
+function [centroid, class] = Kmeanspp(data, k, iteration)
+% Main part of Kmeans clustering algorithm.
+%
+% Args:
+%   data: data to be clustered (n * p)
+%   k: the number of classes
+%   iteration: maximum number of iterations
+%
+% Returns:
+%   centroid: clustering centroids for all classes
+%   class: corresponding class for all samples
 
-% Choose an initial centroid randomly
+% Choose the first inital centroid randomly
 centroid = data(randperm(size(data,1),1)',:);
 
-% Choose other centroids (a total number of k-1)
+% Select remaining initial centroids (a total number of k-1)
 for i = 2:k
     distance_matrix = zeros(size(data,1),i-1);
     for j = 1:size(distance_matrix,1)
@@ -19,32 +29,35 @@ for i = 2:k
 end
 
 % Following steps are same to kmeans
-result = zeros(size(data,1),1);
+class = zeros(size(data,1),1);
 distance_matrix = zeros(size(data,1), k);
 
 for i = 1:iteration
     
-    % Termination flag
-    previous_result = result;
+    previous_result = class; % for early termination
     
-    % Calculate distance between each point and each centroid
+    % Calculate eculidean distance between each sample and each centroid
     for j = 1:size(distance_matrix,1)
-        for k = 1:size(centroid,1)
-            distance_matrix(j,k) = sqrt(sum((data(j,:)-centroid(k,:)) .^ 2));
+        for k = 1:size(distance_matrix,2)
+            distance_matrix(j,k) = sqrt((data(j,:)-centroid(k,:)) * (data(j,:)-centroid(k,:))');
         end
     end
     
-    % Assign each point to the nearest cluster controid
-    [~,result] = min(distance_matrix,[],2);
+    % Assign each sample to the nearest controid
+    [~,class] = min(distance_matrix,[],2);
     
-    % Recalculate centroids after assignment
+    % Recalculate centroids
     for j = 1:k
-        centroid(j,:) = mean(data(result(:,1) == j,:));
+        centroid(j,:) = mean(data(class(:,1) == j,:));
     end
+    
+    % Display
+    fprintf('---- %ith iteration completed---- \n',i);
+    
     % If classified results on all points do not change after an iteration, 
-    % the clustering process will quit immediately
-    if(result == previous_result)
-        fprintf('Clustering over after %i iterations...\n',i);
+    % the clustering process will quit immediately.
+    if(class == previous_result)
+        fprintf('**** Clustering over after %i iterations ****\n',i);
         break;
     end
 end
@@ -75,5 +88,4 @@ for i = 1:size(temp_roulette,1)
         index = i;
     end
 end
-
 end
