@@ -18,7 +18,6 @@ k = 1;
 vmask = ones(size(data, 1), 1); % variable used to record whether one point has been visited (1: not visited, 0: visited)
 result = zeros(size(data, 1), 1); % pre-allocate result
 
-
 % Find all core objects
 for i = 1:size(data, 1)
     x = data(i, :); % current point of interests
@@ -84,7 +83,6 @@ while(~isempty(core_object))
     
     k = k + 1; % next class
 end
-
 end
 
 function d = Eculidean_Distance(x1, x2)
