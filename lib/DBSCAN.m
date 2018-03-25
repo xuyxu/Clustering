@@ -1,22 +1,23 @@
-function result = DBSCAN(data, epsilon, minPts)
-% Main part of DBSCAN (Density-Based Spatial Clustering of Application with 
+function label = DBSCAN(data, epsilon, minPts)
+% label = DBSCAN(data, epsilon, minPts)
+%   Main part of DBSCAN (Density-Based Spatial Clustering of Application with 
 % Noise)clustering algorithm.
-% 
+% ----
 % Args:
 %   data: data to be clustered (n * p)
 %   epsilon: distance threshold for finding neighbors
 %   minPts: minimum required number of neighbor points for one core object
-%
+% ----
 % Returns:
 %   centroid: clustering centroids for all classes
-%   result: corresponding class for each data points
+%   label: corresponding class for each data points
 
 % Initialization
 core_object = [];
 count = 1;
 k = 1;
 vmask = ones(size(data, 1), 1); % variable used to record whether one point has been visited (1: not visited, 0: visited)
-result = zeros(size(data, 1), 1); % pre-allocate result
+label = zeros(size(data, 1), 1); % pre-allocate result
 
 % Find all core objects
 for i = 1:size(data, 1)
@@ -58,7 +59,7 @@ while(~isempty(core_object))
     queue(qcount, 1) = index; % add the selected core object into the queue
     qcount = qcount + 1;
     vmask(index, 1) = 0; % update vmask
-    result(index, 1) = k; % assign result 
+    label(index, 1) = k; % assign result 
     core_object(core_object == index, :) = []; % remove the selected core object from the set
     
     while(~isempty(queue))
@@ -75,7 +76,7 @@ while(~isempty(core_object))
                     queue(qcount, 1) = tindex(i, 1);
                     qcount = qcount + 1;
                     vmask(tindex(i, 1),1) = 0; % update vmask
-                    result(tindex(i, 1),1) = k; % assign result
+                    label(tindex(i, 1),1) = k; % assign result
                 end
             end
         end   
