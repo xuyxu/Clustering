@@ -1,4 +1,4 @@
-# A Collection of Clustering/Subspace Clustering Algorithms
+# Clustering/Subspace Clustering Algorithms on MATLAB
 
 ## 1. Clustering Algorithms
 - **K-means**
@@ -18,6 +18,8 @@
 	- No structure priori.
 - **DBSCAN (Density-Based Spatial Clustering of Application with Noise)**
 	- Starting with pre-selected core objects, DBSCAN extends each cluster based on the connectivity between data points;
+	- DBSCAN takes noisy data into consideration, hence robust to outliers;
+	- Choosing good parameters can be hard without prior knowledge;
 
 ## 2. Subspace Clustering Algorithms
 - **Subspace K-means**
