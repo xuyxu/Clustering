@@ -5,6 +5,7 @@ function [centroid, result] = Clustering(data, method, varargin)
 %   3. ISODATA (Iterative Self-Organizing Data Analysis)
 %   4. Mean Shift
 %   5. DBSCAN (Density-Based Spatial Clustering of Application with Noise)
+%   6. Gaussian Mixture Model
 
 addpath('.\lib');
 addpath('.\tool');
@@ -18,6 +19,8 @@ elseif((strcmp(method,'mean_shift') || strcmp(method,'Mean_Shift')) && (size(var
     error('Invalid number of input for mean shift.');
 elseif((strcmp(method,'dbscan') || strcmp(method,'DBSCAN')) && (size(varargin, 2) ~= 2))
     error('Invalid number of input for dbscan.');
+elseif((strcmp(method,'GMM') || strcmp(method,'gmm')) && (size(varargin, 2) ~= 2))
+    error('Invalid number of input for Gaussian Mixture Model');
 end
 
 % Method entries
@@ -55,6 +58,12 @@ elseif(strcmp(method,'dbscan') || strcmp(method,'DBSCAN'))
     centroid = nan; % DBSCAN will not calculate centroid
     result = DBSCAN(data, epsilon, minPts);
     PlotData(data, result);
+% Gaussian Mixture Model
+elseif(strcmp(method,'GMM') || strcmp(method,'gmm'))
+    k = varargin{1,1}; % the number of Guassian components
+    iter = varargin{1,2}; % maximum number of iterations
+    [result, alpha, centroid, sigma] = Gaussian_Mixture(data, k, iter);
+    PlotData(data, result, centroid);
 else
     error('Unknown method!');
 end
