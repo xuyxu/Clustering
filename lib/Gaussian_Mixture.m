@@ -16,7 +16,7 @@ function [label, alpha, miu, sigma] = Gaussian_Mixture(data, k, iter)
 
 % Initialization
 alpha = ones(k, 1) / k;
-miu = data(randperm(size(data,1),3)',:);
+miu = data(randperm(size(data,1),k)',:);
 for i = 1 : k
     sigma{i, 1} = rand * eye(size(data, 2));
 end
@@ -68,7 +68,7 @@ for i = 1 : size(data, 1)
     sump = 0; % normalizing factor 
     for j = 1 : k
         tx = data(i, :) - miu(k, :); % x - miu
-        sigma{j,1} = sigma{j,1} + 1e-5*eye(size(data,2)); % for numerical stability
+        sigma{j,1} = sigma{j,1} + 1e-6*eye(size(data,2)); % for numerical stability
         inv_sigma = inv(sigma{j, 1});
         upper = -0.5 * tx * inv_sigma * tx';
         p(i, j) = alpha(j, 1) * exp(upper) / sqrt((2*pi)^(size(data,2))*abs(det(sigma{j,1})));
