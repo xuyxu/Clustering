@@ -6,8 +6,6 @@
     - Generally speaking, this algorithm is similar to **K-means**;
     - Unlike classic K-means randomly choosing initial centroids, a better initialization procedure is integrated into **K-means++**, where observations far from existing centroids have higher probabilities of being chosen as the next centroid.
     - The initializeation procedure can be achieved using Fitness Proportionate Selection.
-- **K-MC<sup>2</sup> (AAAI 2016)**
-- **Assumption-free K-MC<sup>2</sup> (NIPS 2016)**
 - **ISODATA (Iterative Self-Organizing Data Analysis)**
     - To be brief, **ISODATA** introduces two additional operations: Splitting and Merging;
     - When the number of observations within one class is less than one pre-defined threshold, **ISODATA** merges two classes with minimum between-class distance; 
@@ -20,6 +18,8 @@
 	- Starting with pre-selected core objects, DBSCAN extends each cluster based on the connectivity between data points;
 	- DBSCAN takes noisy data into consideration, hence robust to outliers;
 	- Choosing good parameters can be hard without prior knowledge;
+- **Gaussian Mixture Model (GMM)**
+- **LVQ (Learning Vector Quantization)**
 
 ## 2. Subspace Clustering Algorithms
 - **Subspace K-means**

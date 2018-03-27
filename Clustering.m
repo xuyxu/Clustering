@@ -5,7 +5,8 @@ function [centroid, result] = Clustering(data, method, varargin)
 %   3. ISODATA (Iterative Self-Organizing Data Analysis)
 %   4. Mean Shift
 %   5. DBSCAN (Density-Based Spatial Clustering of Application with Noise)
-%   6. Gaussian Mixture Model
+%   6. Gaussian Mixture Model /* Numerical instability problem not completely solved*/
+%   7. LVQ (Learning Vector Quantization)
 
 addpath('.\lib');
 addpath('.\tool');
@@ -21,10 +22,11 @@ elseif((strcmp(method,'dbscan') || strcmp(method,'DBSCAN')) && (size(varargin, 2
     error('Invalid number of input for dbscan.');
 elseif((strcmp(method,'GMM') || strcmp(method,'gmm')) && (size(varargin, 2) ~= 2))
     error('Invalid number of input for Gaussian Mixture Model');
+elseif((strcmp(method,'LVQ') || strcmp(method,'lvq')) && (size(varargin, 2) ~= 5))
+    error('Invalid number of input for Learning Vector Quantization');
 end
 
 % Method entries
-
 % Kmeans
 if(strcmp(method,'kmeans'))
     k = varargin{1,1};
@@ -64,10 +66,18 @@ elseif(strcmp(method,'GMM') || strcmp(method,'gmm'))
     iter = varargin{1,2}; % maximum number of iterations
     [result, alpha, centroid, sigma] = Gaussian_Mixture(data, k, iter);
     PlotData(data, result, centroid);
+% Learning Vector Quantization
+elseif(strcmp(method,'LVQ') || strcmp(method,'lvq'))
+    q = varargin{1,1}; % the number of prototypes
+    neta = varargin{1,2}; % learning rate
+    x = varargin{1,3}; % training data
+    y = varargin{1,4}; % label of x
+    iter = varargin{1,5}; % maximum number of iterations
+    [centroid, result] = LVQ(data, q, neta, x, y, iter);
+    PlotData(data, result, centroid);
 else
     error('Unknown method!');
 end
-
 end
 
 
