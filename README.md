@@ -1,5 +1,7 @@
 # Clustering/Subspace Clustering Algorithms on MATLAB
 
+**This repository is currently under reconsitution. It will be updated periodically, but without any guarantee... [Jan 28, 2019]**
+
 ## 1. Clustering Algorithms
 - **K-means**
 - **K-means++**
