@@ -17,8 +17,8 @@ centroid = data(randperm(size(data,1),1)',:);
 for i = 2:k
     distance_matrix = zeros(size(data,1),i-1);
     for j = 1:size(distance_matrix,1)
-        for k = 1:size(distance_matrix,2)
-            distance_matrix(j,k) = sum((data(j,:)-centroid(k,:)) .^ 2);
+        for p = 1:size(distance_matrix,2)
+            distance_matrix(j,p) = sum((data(j,:)-centroid(p,:)) .^ 2);
         end
     end
     % Choose next centroid according to distances between points and
