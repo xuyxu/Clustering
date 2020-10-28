@@ -1,6 +1,6 @@
 # Clustering/Subspace Clustering Algorithms on MATLAB
 
-**This repository is currently under reconsitution. It will be updated periodically, but without any guarantee... [Jan 28, 2019]**
+**This repo is no longer in active development. However, any problem on implementations of existing algorithms is welcomed. [Oct, 2020]**
 
 ## 1. Clustering Algorithms
 - **K-means**
@@ -32,7 +32,6 @@
     - Generally speaking, this algorithm is similar to **Subspace K-means**;
     - In addition, it introduces one regularization item related to weight entropy into the objective function, in order to mitigate the aforementioned problem in **Subspace K-means**.
     - Apart from its succinctness and efficiency, it works well on a broad range of real-world datasets.
-- **Sparse Subspace Clustering**
 
 
 
